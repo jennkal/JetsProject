@@ -82,7 +82,9 @@ public abstract class Jet {
 	}
 
 	public void loadCargo() {
-		// TODO Auto-generated method stub
+		
+	}
+	public void fight() {
 		
 	}
 	

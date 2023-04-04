@@ -25,8 +25,15 @@ public class AirField {
 		System.out.println("Jet added to fleet");
 	}
 	
-	public void removeFromFleet(Jet jet) {
-		fleet.remove(jet);
+	public void removeFromFleet(String jets) {
+		Jet jetToRemove = new JetImpl();
+		
+		for (Jet jet : listOfJets()) {
+			if(jet.name.equals(jets)) {
+			jetToRemove = jet;
+			}
+		}
+		fleet.remove(jetToRemove);
 		System.out.println("Jet removed from fleet");
 	}
 	

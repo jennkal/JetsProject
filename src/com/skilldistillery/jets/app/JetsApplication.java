@@ -1,7 +1,7 @@
 package com.skilldistillery.jets.app;
 
-import java.util.List;
 import java.util.Scanner;
+
 import com.skilldistillery.jets.entities.AirField;
 import com.skilldistillery.jets.entities.Jet;
 import com.skilldistillery.jets.entities.JetImpl;
@@ -77,49 +77,71 @@ public class JetsApplication {
 				System.out.println(longestRangeJet);
 			} else if (input == 5) {
 				for (Jet jet : airField.listOfJets()) {
-					if(jet.getModel().equals("Cargo")) {
+					if (jet.getModel().equals("Cargo")) {
 						jet.loadCargo();
 					}
 				}
 			} else if (input == 6) {
-				//Dogfight
-				
-				
+				// Dogfight
+				for (Jet jet : airField.listOfJets()) {
+					if(jet.getModel().equals("Fighter")) {
+						jet.fight();
+					}
+				}
+
 			} else if (input == 7) {
-				//allow user to input new jets
+				// allow user to input new jets
 				Scanner sc = new Scanner(System.in);
-				
+
 				System.out.print("Please enter a Model for your Jet: ");
-					String model = sc.nextLine();
+				String model = sc.nextLine();
 
-					System.out.print("What is the your Jets Name: ");
-					String name = sc.nextLine();
+				System.out.print("What is the your Jets Name: ");
+				String name = sc.nextLine();
 
-					System.out.print("What is your Jets speed in MPH: ");
-					double speed = sc.nextDouble();
-					
-					System.out.print("What is your Jets range in miles: ");
-					int range = sc.nextInt();
-					
-					System.out.println("What is your Jets price: ");
-					long price = sc.nextLong();
+				System.out.print("What is your Jets speed in MPH: ");
+				double speed = sc.nextDouble();
 
-					kb.nextLine();
+				System.out.print("What is your Jets range in miles: ");
+				int range = sc.nextInt();
 
-					Jet jet = new JetImpl(model, name, speed, range, price);
+				System.out.println("What is your Jets price: ");
+				long price = sc.nextLong();
 
-					airField.addToFleet(jet);
-				
-					sc.close();
+				kb.nextLine();
+
+				Jet jet = new JetImpl(model, name, speed, range, price);
+
+				airField.addToFleet(jet);
+
+				//sc.close();
 			} else if (input == 8) {
-				//remove form fleet
-				Scanner scan = new Scanner(System.in);
-				
-				System.out.println("Remove Jet by name: ");
-				remove jet = scan
+				int option = 0;
+				// remove form fleet
+				while (option != 2) {
+					Scanner scan = new Scanner(System.in);
+
+					System.out.println("-----MENU-----");
+					System.out.println("-1. Remove Jet by name");
+					System.out.println("-2. Quit menu");
+					
+					System.out.println("Select a number option: ");
+					option = scan.nextInt();
+					scan.nextLine();
+					
+					if (option == 1) {
+						System.out.println("Remove Jet by name: ");
+						String jet = scan.nextLine();
+
+						airField.removeFromFleet(jet);
+					}
+					//scan.close();
+				}
+			} else if (input == 9) {
+				System.out.println("Toodeloo");
 			}
-			
-			kb.close();
+
+			//kb.close();
 		}
 
 	}
